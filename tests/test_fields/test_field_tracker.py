@@ -8,7 +8,7 @@ from model_utils import FieldTracker
 from model_utils.tracker import DescriptorWrapper
 from tests.models import (
     Tracked, TrackedFK, InheritedTrackedFK, TrackedNotDefault, TrackedNonFieldAttr, TrackedMultiple,
-    InheritedTracked, TrackedFileField,
+    InheritedTracked, TrackedFileField, TrackedAbstractChild,
     ModelTracked, ModelTrackedFK, ModelTrackedNotDefault, ModelTrackedMultiple, InheritedModelTracked,
 )
 
@@ -529,6 +529,11 @@ class InheritedFieldTrackerTests(FieldTrackerTests):
 class FieldTrackerInheritedForeignKeyTests(FieldTrackerForeignKeyTests):
 
     tracked_class = InheritedTrackedFK
+
+
+class FieldTrackerAbstractParentTests(FieldTrackerTests):
+
+    tracked_class = TrackedAbstractChild
 
 
 class FieldTrackerFileFieldTests(FieldTrackerTestCase):

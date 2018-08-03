@@ -301,6 +301,22 @@ class InheritedModelTracked(ModelTracked):
     name2 = models.CharField(max_length=20)
 
 
+class NontrackedAbstractParent(models.Model):
+    name = 'foo'
+    number = 1
+
+    class Meta:
+        abstract = True
+
+
+class TrackedAbstractChild(NontrackedAbstractParent):
+    name = models.CharField(max_length=20)
+    number = models.IntegerField()
+    mutable = MutableField(default=None)
+
+    tracker = FieldTracker()
+
+
 class StatusFieldDefaultFilled(models.Model):
     STATUS = Choices((0, "no", "No"), (1, "yes", "Yes"))
     status = StatusField(default=STATUS.yes)
